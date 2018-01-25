@@ -13,8 +13,11 @@ public class FizzBuzzController {
     public String fizzBuzz(){
         int first = 1;
         int last = 100;
+        int count = 0;
         String fizzy = "";
         for(int i=first; i<=last; i++){
+            if(count % 10 == 0)
+                fizzy = fizzy +"</br>";
             if(i%3 != 0 && i%5!=0)
                 fizzy = fizzy + String.valueOf(i)+" ";
             if(i%3 == 0 && i%5!=0)
@@ -23,13 +26,10 @@ public class FizzBuzzController {
                 fizzy = fizzy +" Buzz ";
             if(i%3 == 0 && i%5==0)
                 fizzy = fizzy +(" FizzBuzz ");
-            //else
-               // fizzy = fizzy + String.valueOf(i) +" ";
-
+            count++;
         }
         return fizzy;
     }
-
 
 
     @RequestMapping("/bonus")
@@ -39,17 +39,7 @@ public class FizzBuzzController {
         System.out.println("How many numbers? Enter an integer ");
         int last = reader.nextInt();
 
-        String fizzy = "", notFizzy="";
         for(int i=first; i<=last; i++){
-            if(i%3 != 0 && i%5!=0)
-                fizzy = fizzy + String.valueOf(i)+" ";
-            if(i%3 == 0 && i%5!=0)
-                fizzy = fizzy + " Fizz ";
-            if(i%5 == 0 && i%3!=0)
-                fizzy = fizzy +" Buzz ";
-            if(i%3 == 0 && i%5==0)
-                fizzy = fizzy +(" FizzBuzz ");
-
             if(i%7 == 0)
                 count7++;
             if(i%17 == 0)
@@ -59,7 +49,6 @@ public class FizzBuzzController {
 
         }
 
-        //return fizzy+"</br></br>"+notFizzy;
-        return fizzy+"</br></br>"+"The number of multiples of 7 are "+String.valueOf(count7)+"</br>The number of multiples of 17 are "+String.valueOf(count17)+"</br>The number of multiples of 23 are "+String.valueOf(count23);
+        return fizzBuzz()+"</br></br>"+"The number of multiples of 7 are "+String.valueOf(count7)+"</br>The number of multiples of 17 are "+String.valueOf(count17)+"</br>The number of multiples of 23 are "+String.valueOf(count23);
     }
 }
